@@ -1,0 +1,7 @@
+type,nominal_value,unit,tolerance_pct,package_supported
+Resistor,10000,ohm,5,yes
+Capacitor,100,microfarad,10,yes
+LED,2.1,volt_forward_drop,15,yes
+Diode,0.7,volt_forward_drop,10,yes
+Inductor,220,microhenry,10,yes
+IC,,,,no

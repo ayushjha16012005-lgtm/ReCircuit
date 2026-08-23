@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ReCircuit — Virtual Prototype</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">ReCircuit</div>
+    <div class="pill">AUTOMATE INDIA • VIRTUAL PROTOTYPE</div>
+  </header>
+
+  <main>
+    <h1>Intelligent PCB Component Recovery</h1>
+    <div class="muted">From discarded PCB → verified reusable component.</div>
+
+    <div class="flow">
+      <span id="f1" class="on">1 SCAN</span>
+      <span id="f2">2 IDENTIFY</span>
+      <span id="f3">3 DECIDE</span>
+      <span id="f4">4 RECOVER</span>
+      <span id="f5">5 VALIDATE</span>
+      <span id="f6">6 PASSPORT</span>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <h2>PCB Vision Scanner</h2>
+        <div class="pcb">
+          <div id="scanline" class="scanline"></div>
+          <i class="trace t1"></i>
+          <i class="trace t2"></i>
+          <div class="part r1" onclick="pick(this,'R1','Resistor','10 kΩ','96%','HIGH')">R1 · RES</div>
+          <div class="part c1" onclick="pick(this,'C1','Capacitor','100 µF','93%','HIGH')">C1 · CAP</div>
+          <div class="part d1" onclick="pick(this,'D1','LED','Green LED','98%','HIGH')">D1 · LED</div>
+          <div class="part u1" onclick="pick(this,'U1','IC','Complex IC','89%','LOW')">U1 · IC</div>
+        </div>
+        <button onclick="scan()">🔍 Scan Discarded PCB</button>
+        <button class="alt" onclick="location.reload()">Reset</button>
+        <div id="status" class="panel">System ready. Scan a discarded PCB to begin.</div>
+      </section>
+
+      <section class="card">
+        <h2>System Intelligence</h2>
+        <div class="metrics">
+          <div class="metric"><small>PCBs Scanned</small><b id="m1">0</b></div>
+          <div class="metric"><small>Detected</small><b id="m2">0</b></div>
+          <div class="metric"><small>Candidates</small><b id="m3">0</b></div>
+          <div class="metric"><small>Validated</small><b id="m4">0</b></div>
+        </div>
+        <div id="analysis" class="panel"><b>Selected Component</b><div class="muted">None</div></div>
+        <button onclick="decide()">🎯 Evaluate Recovery</button>
+        <button class="alt" onclick="recover()">🤖 Simulate Extraction</button>
+        <button class="alt" onclick="validate()">⚡ Validate</button>
+      </section>
+    </div>
+
+    <section class="card">
+      <h2>Recovery Decision Engine</h2>
+      <div class="row"><span>Detection confidence</span><b id="conf">—</b></div>
+      <div class="row"><span>Recoverability</span><b id="recov">—</b></div>
+      <div class="row"><span>Decision</span><b id="decision">Awaiting component</b></div>
+      <p class="muted">Recovery progress</p>
+      <div class="barbg"><div id="bar" class="bar"></div></div>
+      <div id="log" class="log"></div>
+    </section>
+
+    <section class="card">
+      <h2>Digital Component Passport</h2>
+      <div id="passport" class="panel passport muted">
+        Validate a recovered component to generate its digital passport.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Reusable Component Inventory</h2>
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Type</th><th>Measured</th><th>Status</th><th>Grade</th><th>Source</th></tr>
+        </thead>
+        <tbody id="inv">
+          <tr><td colspan="6" class="muted">No validated components yet.</td></tr>
+        </tbody>
+      </table>
+      <p class="muted" style="font-size:11px">
+        Simulation note: confidence, recovery decisions and measurements are demonstration
+        data, not real laboratory measurements. See <code>backend/</code> for the
+        equivalent rule-based decision logic implemented in Python.
+      </p>
+    </section>
+  </main>
+
+  <footer>ReCircuit — Built by The InnoveRise for Automate India, NIET Chapter.</footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
